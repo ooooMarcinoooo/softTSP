@@ -13,24 +13,26 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+using Microsoft.Research.DynamicDataDisplay;
+using Microsoft.Research.DynamicDataDisplay.DataSources;
+
 namespace TravelPathOptimization
 {
 
+    // My drawing canvas with predefined graphics for demonstration purpose
     public class MyCanvas : Canvas
     {
-        /**
-         * @brief   Set custom OnRender function
-         */
+ 
+        // Set custom OnRender function      
         public MyCanvas()
         {
             DefaultStyleKey = typeof(MyCanvas);
         }
 
-        /**
-         * @brief   Here the drawing happens
-         */
+        // Here the drawing happens
         protected override void OnRender(DrawingContext dc)
         {
+            // background
             SolidColorBrush mySolidColorBrush = new SolidColorBrush();
             mySolidColorBrush.Color = Colors.LightSalmon;
             Pen myPen = new Pen(Brushes.Blue, 1);
@@ -38,9 +40,7 @@ namespace TravelPathOptimization
             myPen.Freeze();
             dc.DrawRectangle(mySolidColorBrush, myPen, myRect);
 
-            
-
-
+            // chart
             var geometry = new StreamGeometry();
             using (StreamGeometryContext ctx = geometry.Open())
             {
@@ -65,11 +65,24 @@ namespace TravelPathOptimization
     /// </summary>
     public partial class MainWindow : Window
     {
-     
         public MainWindow()
         {
 
             InitializeComponent();
+            InitializeFunctionMinValueChart();
+        }
+
+        // Add y = sqrt(x) line to the graph for demonstration purpose
+        private void InitializeFunctionMinValueChart()
+        {
+            List<Point> points = new List<Point>();
+            for (int i = 100; i >= 0; i--)
+                points.Add(new Point(i, Math.Sqrt(i)));
+
+            var ds = new EnumerableDataSource<Point>(points);
+            ds.SetXMapping(p => p.X);
+            ds.SetYMapping(p => p.Y);
+            chart.AddLineGraph(ds, Colors.Green, 2, "wart. funkcji"); 
         }
 
     }
