@@ -15,9 +15,9 @@
             <RowDefinition />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <custom:MyCanvas Grid.Row="1" Margin="10,26,10,10" Width="377" Height="250" HorizontalAlignment="Center" VerticalAlignment="Center" />
-       
-        <d3:ChartPlotter Name="chart"  Grid.Row="0" Grid.Column="1"/>
+        <custom:CustomGraph Grid.Row="1" Margin="10,26,10,10" Width="377" Height="250" HorizontalAlignment="Center" VerticalAlignment="Center" />
+
+        <custom:D3Graph x:Name="chart" Grid.Row="0" Grid.Column="1"/>
         <Label Content="[Pole1: Wartosc oceny]" Margin="0" VerticalAlignment="Top" HorizontalAlignment="Center"/>
         <Label Content="[Pole2: 4 wykresy]" Margin="0" VerticalAlignment="Top" HorizontalAlignment="Center" Grid.Row="1"/>
         <Label Content="[Pole3: Minimalne wartosci funkcji]" Margin="0" VerticalAlignment="Top" HorizontalAlignment="Center" Grid.Column="1"/>
