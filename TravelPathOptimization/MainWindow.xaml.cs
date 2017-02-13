@@ -34,8 +34,8 @@ namespace TravelPathOptimization
         private void InitializeFunctionMinValueChart()
         { 
             List<Point> points = new List<Point>();
-            for (int i = 100; i >= 0; i--)
-                points.Add(new Point(i, Math.Sqrt(i)));
+            for (double i = 0; i <= 2.01; i += 0.1 )
+                points.Add(new Point(Math.Sin(i * 3.1415), Math.Cos(i * 3.1415)));
 
             chart.AddLine(points, "wart. funkcji");
         }
