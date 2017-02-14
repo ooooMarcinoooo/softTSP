@@ -12,24 +12,25 @@ using System.Windows.Media;
 namespace TravelPathOptimization
 {
 
-
-    public class D3Graph : ChartPlotter
+    public class D3CitiesPaths : ChartPlotter
     {
-        
-        public D3Graph() { }
-
-        public void AddLine(List<Point> points, string description)
+        public D3CitiesPaths()
         {
-          
+            this.AxisGrid.Visibility = Visibility.Hidden;
+            this.HorizontalAxis.Remove();
+            this.VerticalAxis.Remove();
+        }
+
+        public void AddPoints(List<Point> points, string description)
+        {
             var ds = new EnumerableDataSource<Point>(points);
             ds.SetXMapping(p => p.X);
             ds.SetYMapping(p => p.Y);
-            Microsoft.Research.DynamicDataDisplay.PointMarkers.ElementPointMarker m = 
-                new CircleElementPointMarker { Size = 15.0, Fill = Brushes.Red };
+            var m = new CircleElementPointMarker {  ToolTipText="city", Size = 15.0, Fill = Brushes.Green };
 
             Pen pen = new Pen(Brushes.Black, 1.0);
             Description d = null;
-            this.AddLineGraph( ds, pen,m, d); 
+            this.AddLineGraph( ds, pen, m, d);
         }
     };
 }
